@@ -1,0 +1,17 @@
+package com.qa.hr;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class PersonalDetails {
+	
+	@FindBy (xpath = "//*[@id=\"menu_pim_viewEmployeeList\"]/span[2]")
+	WebElement employeelist;
+	
+	public void clickemployeelist () {
+		employeelist.click();
+			
+	}
+	
+
+}

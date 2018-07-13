@@ -1,0 +1,33 @@
+package com.qa.hr;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class AddEmployeePage {
+
+	
+	@FindBy (xpath = "//*[@id=\"firstName\"]")
+	WebElement firstname;
+	
+	@FindBy (xpath = "//*[@id=\"middleName\"]")
+	WebElement middlename;
+	
+	@FindBy (xpath ="//*[@id=\"lastName\"]")
+	WebElement lastname;
+	
+	@FindBy (xpath = "//*[@id=\"location_inputfileddiv\"]/div/input")
+	WebElement location;
+	
+	@FindBy (xpath = "//*[@id=\"pimAddEmployeeForm\"]/div[1]/div/materializecss-decorator[3]/div/sf-decorator/div/label" )
+	WebElement logindetails;
+	
+	@FindBy (xpath= "//*[@id=\"username\"]")
+	WebElement username;
+	
+	@FindBy (xpath = "//*[@id=\"password\"]")
+	WebElement password;
+	
+	@FindBy (xpath = "//*[@id=\"confirmPassword\"]")
+	WebElement password2;
+	
+}

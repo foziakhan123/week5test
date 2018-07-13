@@ -1,0 +1,81 @@
+package com.qa.hr;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class HrSteps {
+	 WebDriver driver; 
+	 
+	 private Loginpage loginpage;
+	 private Dashboard dashboardpage;
+	 private AddEmployeePage addemployee;
+	 private EmployeeList employeelist;
+	 private PersonalDetails personaldetails;
+	 
+	 String url = "https://qa-trials641.orangehrmlive.com/auth/login";
+	 
+	 @Before 
+	 public void setup () {
+			System.setProperty("webdriver.chrome.driver", "C:/Development/web_driver/chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.manage().window().maximize();
+			driver.get("https://qa-trials641.orangehrmlive.com/auth/login");
+	
+	 }
+	 
+	 @Given("^the login page$")
+	 public void the_login_page() {
+		 Loginpage loginpage = PageFactory.initElements(driver, Loginpage.class);
+		 loginpage.typeusername("Admin");
+		 loginpage.typepassword("AdminAdmin");
+		 loginpage.clickloginbutton();
+		 assertEquals(url, driver.getCurrentUrl());
+		 
+	 }
+	 
+	 @When("^I login$")
+	 public void i_login() { 
+		 Dashboard dashboardpage = PageFactory.initElements(driver, Dashboard.class);
+		 dashboardpage.clickPIMtab();
+		 dashboardpage.clickaddEmployee();
+	 }
+
+	@When("^I click the PIM tab$")
+	public void i_click_the_PIM_tab() {
+		AddEmployeePage addemployee = PageFactory.initElements(driver, AddEmployeePage.class);
+		addemployee.enterfirstname("fozia");
+		addemployee.enterlastname("khan");
+		addemployee.selectlocation();
+		addemployee.clickcreatelogindetails();
+		addemployee.enterusername("fozia");
+		addemployee.enterpassword("password");
+		addemployee.confirmpassword("password");
+		addemployee.selectdefaultrole();
+		addemployee.selectdefaultrole2();
+		addemployee.adminrole();
+		addemployee.clicksave();
+
+	}
+	 
+	 
+	
+	 
+	 
+	 @After
+		public void tearDown() throws InterruptedException {
+			Thread.sleep(2000);
+			driver.close();
+			driver.quit();
+			
+		}
+}
